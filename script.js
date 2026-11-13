@@ -1,10 +1,13 @@
 const terminalDisplayContainer = document.querySelector("#terminal-display-container");
 const terminalInputBox = document.querySelector("#terminal-input-box");
 
+terminalDisplayContainer.style.overflow = "hidden";
+
 function terminalPrintLine (s) {
     const newParagraph = document.createElement("p");
-    newParagraph.textContent = `\n\n${s}`
-    terminalDisplayContainer.appendChild(newParagraph)
+    newParagraph.textContent = `\n\n${s}`;
+    terminalDisplayContainer.appendChild(newParagraph);
+    terminalDisplayContainer.scrollTo(0, terminalDisplayContainer.scrollHeight);
 }
 
 terminalInputBox.addEventListener("keydown", (event) => {

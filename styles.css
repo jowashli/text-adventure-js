@@ -8,6 +8,8 @@
 html,
 body {
     height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 body {
@@ -34,6 +36,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1em;
+
+    overflow-y: scroll;
 }
 
 #terminal-input-container {
