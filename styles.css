@@ -1,0 +1,44 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    color: white;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.terminal {
+    border: 1px solid white;
+
+    width: 500px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    min-height: 100px;
+    flex-grow: 1;
+    border-bottom: 1px solid white;
+}
+
+.input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    caret-shape: block;
+}
+
+.input-line {
+    display: flex;
+    flex-direction: row;
+}
