@@ -30,6 +30,10 @@ body {
     min-height: 100px;
     flex-grow: 1;
     border-bottom: 1px solid white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 #terminal-input-container {
@@ -49,4 +53,9 @@ body {
 #terminal-input-container,
 #terminal-display-container {
     padding: 2px;
+}
+
+#terminal-display-container p {
+    padding: 0px;
+    margin: 0px;
 }
