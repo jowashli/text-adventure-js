@@ -37,7 +37,7 @@ body {
     flex-direction: column;
     gap: 1em;
 
-    overflow-y: scroll;
+    overflow: hidden;
 }
 
 #terminal-input-container {
