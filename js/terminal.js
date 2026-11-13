@@ -4,6 +4,7 @@ let commandRecievedCallback
 
 export function init (onCommandRecievedCallback) {
     commandRecievedCallback = onCommandRecievedCallback
+    inputBox.value = "";
     console.log("Terminal initialized");
 }
 
