@@ -2,6 +2,7 @@
     font-family: 'Courier New', Courier, monospace;
     background-color: black;
     color: white;
+    font-size: small;
 }
 
 html,
@@ -15,7 +16,7 @@ body {
     align-items: center;
 }
 
-.terminal {
+#terminal-container {
     border: 1px solid white;
 
     width: 500px;
@@ -25,20 +26,27 @@ body {
     flex-direction: column;
 }
 
-.display {
+#terminal-display-container {
     min-height: 100px;
     flex-grow: 1;
     border-bottom: 1px solid white;
 }
 
-.input {
+#terminal-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#terminal-input-box {
     border: none;
     outline: none;
     flex-grow: 1;
     caret-shape: block;
+
+    padding: 0px;
 }
 
-.input-line {
-    display: flex;
-    flex-direction: row;
+#terminal-input-container,
+#terminal-display-container {
+    padding: 2px;
 }
