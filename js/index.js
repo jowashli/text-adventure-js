@@ -1,7 +1,8 @@
 import * as Terminal from "./terminal.js";
+import * as CommandParser from "./command-parser.js"
 
-Terminal.init(onCommandRecieved)
+Terminal.init(onCommandRecieved);
 
-function onCommandRecieved () {
-    console.log("Command recieved!")
+function onCommandRecieved (command) {
+    console.log(command);
 }

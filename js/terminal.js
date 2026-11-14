@@ -1,3 +1,5 @@
+import * as CommandParser from "./command-parser.js";
+
 export const displayContainer = document.querySelector("#terminal-display-container");
 export const inputBox = document.querySelector("#terminal-input-box");
 let commandRecievedCallback
@@ -18,18 +20,9 @@ export function printLine (s) {
 inputBox.addEventListener("keydown", event => {
     if (event.key === "Enter") {
         const commandRaw = inputBox.value; inputBox.value = "";
-        let command = commandRaw.split(" ");
-        let searchIndex = 0;
-        for (let i = 0; i < command.length; i++) {
-            if (command[searchIndex] === "") {
-                command.splice(searchIndex, 1);
-                searchIndex--;
-            }
-            searchIndex++;
-        }
-        console.log(command);
+        let command = CommandParser.parseCommand(commandRaw);
         if (commandRecievedCallback) { 
-            commandRecievedCallback(); 
+            commandRecievedCallback(command); 
         } else { console.log("commandRecievedCallback is null!"); }
         printLine(`>${commandRaw}`); 
     }
