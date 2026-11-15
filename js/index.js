@@ -5,7 +5,7 @@ Terminal.init(onCommandRecieved);
 
 function echo (co) {
     if (!co.isArgsEmpty()) {
-        Terminal.printLine(co.args);
+        Terminal.printLineBuffered(co.args.join(" "));
     }
 }
 

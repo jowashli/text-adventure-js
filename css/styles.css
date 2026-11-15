@@ -59,7 +59,17 @@ body {
     padding: 2px;
 }
 
-#terminal-display-container p {
+#terminal-display-container div {
     padding: 0px;
     margin: 0px;
+}
+
+.terminal-display-box pre {
+    margin: 0px;
+}
+
+.terminal-display-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
 }
