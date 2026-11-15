@@ -20,7 +20,7 @@ export function printLine (s) {
 inputBox.addEventListener("keydown", event => {
     if (event.key === "Enter") {
         const commandRaw = inputBox.value; inputBox.value = "";
-        let command = CommandParser.parseCommand(commandRaw);
+        let command = CommandParser.tokenizeCommand(commandRaw);
         if (commandRecievedCallback) { 
             commandRecievedCallback(command); 
         } else { console.log("commandRecievedCallback is null!"); }
