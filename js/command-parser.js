@@ -1,3 +1,5 @@
+import * as Terminal from "./terminal.js";
+
 export class CommandObject {
     
     constructor (firstToken, args) {
@@ -41,6 +43,7 @@ export function executeCommand(command) {
     if (Object.hasOwn(commandTypes, firstToken)) {
         commandTypes[firstToken].callback(new CommandObject(firstToken, args)); 
     } else {
+        Terminal.printLineBuffered("invalid first token", "error")        
         return -1 // invalid first token
     }
 }

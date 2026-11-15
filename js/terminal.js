@@ -11,8 +11,9 @@ export function init (onCommandRecievedCallback) {
     console.log("Terminal initialized");
 }
 
-export function printLineBuffered (s) {
+export function printLineBuffered (s, style="default") {
     const newPre = document.createElement("pre");
+    newPre.classList.add(`terminal-display-element-style-${style}`);
     newPre.textContent = `${s}`;
     outputBuffer.push(newPre);
 }

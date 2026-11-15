@@ -73,3 +73,12 @@ body {
     flex-direction: column;
     gap: 0px;
 }
+
+.terminal-display-element-style-default {
+    color: white;
+}
+
+.terminal-display-element-style-error {
+    color: salmon;
+    font-weight: bold;
+}
