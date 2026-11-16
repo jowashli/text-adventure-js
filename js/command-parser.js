@@ -31,7 +31,7 @@ export function tokenizeCommand(commandRaw) {
 
 let commandTypes = {};
 
-export function createCommand(token, callback) {
+export function registerCommand(token, callback) {
     commandTypes[token] = {
         "callback": callback
     };

@@ -1,7 +1,9 @@
 import * as Terminal from "./terminal.js";
-import * as CommandParser from "./command-parser.js"
+import * as CommandParser from "./command-parser.js";
+import * as Player from "./player.js";
 
 Terminal.init(onCommandRecieved);
+Player.init();
 
 function echo (co) {
     if (!co.isArgsEmpty()) {
@@ -9,7 +11,7 @@ function echo (co) {
     }
 }
 
-CommandParser.createCommand("echo", echo);
+CommandParser.registerCommand("echo", echo);
 
 function onCommandRecieved (command) {
     console.log(command);

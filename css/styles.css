@@ -82,3 +82,8 @@ body {
     color: salmon;
     font-weight: bold;
 }
+
+.terminal-display-element-style-title {
+    color: white;
+    text-decoration: underline;
+}
