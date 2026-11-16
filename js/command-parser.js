@@ -1,7 +1,6 @@
 import * as Terminal from "./terminal.js";
 
 export class CommandObject {
-    
     constructor (firstToken, args) {
         this.firstToken = firstToken;
         this.args = args;
@@ -32,18 +31,22 @@ export function tokenizeCommand(commandRaw) {
 let commandTypes = {};
 
 export function registerCommand(token, callback) {
-    commandTypes[token] = {
-        "callback": callback
-    };
+    if (typeof callback === "function") {
+        commandTypes[token] = {
+            "callback": callback
+        };
+    } else { console.warn("Callback is not a function!"); }
 }
 
-export function executeCommand(command) {
-    const firstToken = command[0];
-    const args = command.splice(1);
+export function executeCommand(commandRaw) {
+    let commandTokenized = tokenizeCommand(commandRaw);
+    const firstToken = commandTokenized[0];
+    const args = commandTokenized.splice(1);
+    const newCommandObject = new CommandObject(firstToken, args);
     if (Object.hasOwn(commandTypes, firstToken)) {
-        commandTypes[firstToken].callback(new CommandObject(firstToken, args)); 
+        commandTypes[firstToken].callback(newCommandObject);
     } else {
-        Terminal.printLineBuffered("invalid first token", "error")        
-        return -1 // invalid first token
+        Terminal.printLineBuffered("invalid first token.", "error");
     }
+    Terminal.flushOutputBuffer();
 }

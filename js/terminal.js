@@ -6,7 +6,9 @@ let commandRecievedCallback
 let outputBuffer = [];
 
 export function init (onCommandRecievedCallback) {
-    commandRecievedCallback = onCommandRecievedCallback;
+    if (typeof onCommandRecievedCallback === "function") {
+        commandRecievedCallback = onCommandRecievedCallback;
+    } else { console.warn("Callback is not a function!"); }
     inputBox.value = "";
     console.log("Terminal initialized");
 }
@@ -33,10 +35,6 @@ inputBox.addEventListener("keydown", event => {
     if (event.key === "Enter") {
         const commandRaw = inputBox.value; inputBox.value = "";
         printLineBuffered(`>${commandRaw}`);
-        let command = CommandParser.tokenizeCommand(commandRaw);
-        if (commandRecievedCallback) { 
-            commandRecievedCallback(command); 
-        } else { console.log("commandRecievedCallback is null!"); }
-        flushOutputBuffer();
+        CommandParser.executeCommand(commandRaw);
     }
 });

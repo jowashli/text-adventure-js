@@ -6,7 +6,7 @@ class Buffer {
     };
 
     static hasPlace (id) {
-        return Object.hasOwn(Buffer.places, id)  
+        return Object.hasOwn(Buffer.places, id);
     }
 
     static loadPlace (id, reload=false) { //
@@ -15,16 +15,23 @@ class Buffer {
                 places[id] = Buffer.places[id];
             }
         } else {
-            console.log("[WARNING] Cannot load Place: does not exist");
+            console.error(`Place ${id} does not exist!`);
         }
     }
 }
 
 function placeLoaded (id) {
+    if (!Buffer.hasPlace(id)) {
+        console.warn("Place does not exist in buffer!");
+    }
     return Object.hasOwn(places, id);
 }
 
 export function getPlace (id) {
+    if (!Buffer.hasPlace(id)) {
+        console.warn("Place does not exist in buffer!");
+        return undefined;
+    }
     if (!placeLoaded(id)) {
         Buffer.loadPlace(id);
     }
@@ -42,9 +49,5 @@ export class Place {
         return new Place(
             obj.name
         )
-    }
-
-    getLookDescription() {
-        return this.name;
     }
 }

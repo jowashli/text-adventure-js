@@ -8,7 +8,7 @@ export function init () {
     place = Places.getPlace("start");
     
     CommandParser.registerCommand("look", () => {
-        Terminal.printLineBuffered(place.getLookDescription(), "title");
+        Terminal.printLineBuffered(place.name, "title");
     })
 }
 

@@ -11,7 +11,12 @@ function echo (co) {
     }
 }
 
+function nothing () {
+    Terminal.printLineBuffered("i dont understand what you said because you said nothing", "error");
+}
+
 CommandParser.registerCommand("echo", echo);
+CommandParser.registerCommand(undefined, nothing);
 
 function onCommandRecieved (command) {
     console.log(command);
