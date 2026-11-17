@@ -1,7 +1,15 @@
+import { Entity } from "./entity.js";
+import * as Terminal from "./terminal.js";
+
 class Buffer {
     static places = {
         "start": {
-            "name": "Living Room"
+            "name": "Living Room",
+            "entities": [
+                {
+                    "displayName": "banana"
+                }
+            ]
         }
     };
 
@@ -12,7 +20,7 @@ class Buffer {
     static loadPlace (id, reload=false) { //
         if (Buffer.hasPlace(id)) {
             if (reload || !placeLoaded(id)) { 
-                places[id] = Buffer.places[id];
+                places[id] = Place.createFromObject(Buffer.places[id]);
             }
         } else {
             console.error(`Place ${id} does not exist!`);
@@ -43,11 +51,21 @@ const places = {};
 export class Place {
     constructor (name) {
         this.name = name;
+        this.entities = [];
     }
 
     static createFromObject (obj) {
-        return new Place(
-            obj.name
-        )
+        let newPlace = new Place(obj.name);
+        obj.entities.forEach(entitySourceObject => {
+            newPlace.entities.push(Entity.createFromObject(entitySourceObject));
+        })
+        return newPlace;
+    }
+
+    printLookDescription () {
+        Terminal.printLineBuffered(this.name, "title")
+        this.entities.forEach(entity => {
+            Terminal.printLineBuffered(entity.getLookDescription())
+        })
     }
 }

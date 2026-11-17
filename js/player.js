@@ -8,8 +8,9 @@ export function init () {
     place = Places.getPlace("start");
     
     CommandParser.registerCommand("look", () => {
-        Terminal.printLineBuffered(place.name, "title");
+        place.printLookDescription();
     })
+    console.log("Player initialized")
 }
 
 export function goToPlace (id) {

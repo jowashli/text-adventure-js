@@ -1,4 +1,5 @@
 import * as Terminal from "./terminal.js";
+import { tokenize } from "./utils/tokenize.js"
 
 export class CommandObject {
     constructor (firstToken, args) {
@@ -15,19 +16,6 @@ export class CommandObject {
     }
 }
 
-export function tokenizeCommand(commandRaw) {
-    let command = commandRaw.split(" ");
-    let searchIndex = 0;
-    for (let i = 0; i < command.length; i++) {
-        if (command[searchIndex] === "") {
-            command.splice(searchIndex, 1);
-            searchIndex--;
-        }
-        searchIndex++;
-    }
-    return command;
-}
-
 let commandTypes = {};
 
 export function registerCommand(token, callback) {
@@ -39,9 +27,9 @@ export function registerCommand(token, callback) {
 }
 
 export function executeCommand(commandRaw) {
-    let commandTokenized = tokenizeCommand(commandRaw);
+    let commandTokenized = tokenize(commandRaw);
     const firstToken = commandTokenized[0];
-    const args = commandTokenized.splice(1);
+    let args = commandTokenized.toSpliced(1);
     const newCommandObject = new CommandObject(firstToken, args);
     if (Object.hasOwn(commandTypes, firstToken)) {
         commandTypes[firstToken].callback(newCommandObject);
