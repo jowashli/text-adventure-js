@@ -29,7 +29,8 @@ export function registerCommand(token, callback) {
 export function executeCommand(commandRaw) {
     let commandTokenized = tokenize(commandRaw);
     const firstToken = commandTokenized[0];
-    let args = commandTokenized.toSpliced(1);
+    let args = commandTokenized.toSpliced(0, 1);
+    console.log(args)
     const newCommandObject = new CommandObject(firstToken, args);
     if (Object.hasOwn(commandTypes, firstToken)) {
         commandTypes[firstToken].callback(newCommandObject);
