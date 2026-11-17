@@ -1,4 +1,3 @@
-import { displayContainer } from "./terminal.js";
 import { tokenize } from "./utils/tokenize.js"
 
 export class Entity {
