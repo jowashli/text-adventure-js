@@ -1,24 +1,24 @@
 import * as Terminal from "./terminal.js";
-import * as CommandParser from "./command-parser.js";
 import * as Player from "./player.js";
+import * as Commands from "./commands.js";
+import { tokenize } from "./utils/tokenize.js";
 
 Terminal.init(onCommandRecieved);
 Player.init();
 
-function echo (co) {
-    if (!co.isArgsEmpty()) {
-        Terminal.printLineBuffered(co.args.join(" "));
-    }
-}
+Commands.CommandRegistry.addCommand("echo", { undefined: undefined })
+Commands.CommandRegistry.addCallback("echo", (s="") => {
+	Terminal.printLineBuffered(s);
+});
 
-function nothing () {
-    Terminal.printLineBuffered("i dont understand what you said because you said nothing", "error");
-}
+Commands.CommandRegistry.addCallback("", (s) => { // no valid command
+	if (s === undefined || s === "") {
+		Terminal.printLineBuffered("i don't understand what you said because you said nothing", "error");
+	} else {
+		Terminal.printLineBuffered(`i don't understand what you meant by "${tokenize(s)[0]}"`, "error");
+	}
+});
 
-CommandParser.registerCommand("echo", echo);
-CommandParser.registerCommand(undefined, nothing);
-
-function onCommandRecieved (command) {
-    console.log(command);
-    CommandParser.executeCommand(command);
+function onCommandRecieved (commandRaw) {
+	Commands.executeCommand(commandRaw)
 }

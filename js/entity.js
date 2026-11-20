@@ -24,7 +24,7 @@ export class Entity {
         newEntity.fillUndefinedAttributes();
         return newEntity
     }
-    
+
     fillUndefinedAttribute (attributeName, defaultValue) {
         if (this[attributeName] == undefined) {
             this[attributeName] = defaultValue;
@@ -49,6 +49,6 @@ export class Entity {
     }
 
     getInspectionDescription () {
-        return this.inspectionDescription;
+    	return this.inspectionDescription;
     }
 }

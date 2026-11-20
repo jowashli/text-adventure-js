@@ -1,8 +1,6 @@
-import * as CommandParser from "./command-parser.js";
-
 export const displayContainer = document.querySelector("#terminal-display-container");
 export const inputBox = document.querySelector("#terminal-input-box");
-let commandRecievedCallback
+let commandRecievedCallback;
 let outputBuffer = [];
 
 export function init (onCommandRecievedCallback) {
@@ -35,6 +33,7 @@ inputBox.addEventListener("keydown", event => {
     if (event.key === "Enter") {
         const commandRaw = inputBox.value; inputBox.value = "";
         printLineBuffered(`>${commandRaw}`);
-        CommandParser.executeCommand(commandRaw);
+		commandRecievedCallback(commandRaw);
+		flushOutputBuffer();
     }
 });
