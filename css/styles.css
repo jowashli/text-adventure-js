@@ -66,6 +66,7 @@ body {
 
 .terminal-display-box pre {
     margin: 0px;
+    text-wrap: wrap;
 }
 
 .terminal-display-box {
